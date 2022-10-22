@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  app:
+    container_name: sentrydiscord-app
+    build: .
+    restart: always
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    networks:
+      - sentrydiscord-net
+  db:
+    container_name: sentrydiscord-postgres
+    image: postgres:15
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - sentrydiscord-net
+
+networks:
+  sentrydiscord-net:
+    name: sentrydiscord-net
+    driver: bridge
