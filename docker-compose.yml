@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     networks:
-      - sentrydiscord-net
+      sentrydiscord-net:
   db:
     container_name: sentrydiscord-postgres
     image: postgres:15
@@ -21,7 +21,8 @@ services:
     volumes:
       - ./data:/var/lib/postgresql/data
     networks:
-      - sentrydiscord-net
+      sentrydiscord-net:
+
 
 networks:
   sentrydiscord-net:
